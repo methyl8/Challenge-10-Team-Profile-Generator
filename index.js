@@ -5,6 +5,8 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
+const generateHTML = require("./src/generateHTML")
+
 const questionsManager = [
     {
         type: "input",
@@ -123,7 +125,7 @@ function addIntern() {
 }
 
 function generatePage() {
-    console.log(team);
+    fs.writeFile("./dist/my-team.html", generateHTML(team), (err) => err ? console.error(err) : console.log(`Profile at ./dist/my-team.html`))
 }
 start();
 // GIVEN a command-line application that accepts user input
