@@ -1,3 +1,4 @@
+//base empty html
 const html = {
     top: `<!DOCTYPE html>
     <html lang="en">

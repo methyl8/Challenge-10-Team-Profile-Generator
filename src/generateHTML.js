@@ -1,5 +1,5 @@
 const template = require("./template.js")
-
+//create team member card
 function createCard(teamMember) {
     return `<div class="card text-center m-2" style="width: 18rem;">
                 <div class="card-body">
@@ -12,6 +12,7 @@ function createCard(teamMember) {
               </div>`
 }
 
+//create extra line by role
 function createDynamic(teamMember) {
     switch (teamMember.role) {
         case "Manager":
@@ -25,6 +26,7 @@ function createDynamic(teamMember) {
     }
 }
 
+//create full html 
 function generateHTML(team) {
     let returnText = ``
     returnText += template.top;

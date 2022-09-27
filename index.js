@@ -1,12 +1,15 @@
+//packages
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+//classes
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
 const generateHTML = require("./src/generateHTML")
 
+//manager questions
 const questionsManager = [
     {
         type: "input",
@@ -30,6 +33,7 @@ const questionsManager = [
     }
 ]
 
+//next entry options
 const options = [
     {
         type: "list",
@@ -39,6 +43,7 @@ const options = [
     }
 ]
 
+//questions for both engineer and intern
 const questionsAll = [
     {
         type: "input",
@@ -58,6 +63,7 @@ const questionsAll = [
     }
 ]
 
+//engineer question
 const questionEngineer = [
     {
         type: "input",
@@ -66,6 +72,7 @@ const questionEngineer = [
     }
 ]
 
+//intern question
 const questionIntern = [
     {
         type: "input",
@@ -76,18 +83,21 @@ const questionIntern = [
 
 const team = []
 
+//start app with manager questions
 function start() {
     inquirer
         .prompt(questionsManager)
         .then(addManager)
 }
 
+//add manager to team
 function addManager(managerAns) {
     let manager = new Manager(managerAns.name, managerAns.id, managerAns.email, managerAns.officeNumber)
     team.push(manager);
     next();
 }
 
+//determine next entry or end and generate file
 function next() {
     inquirer.prompt(options).then(cont => {
         if(cont.teamOption == "Engineer") {
@@ -102,6 +112,7 @@ function next() {
     })
 }
 
+//enter engineer
 function addEngineer() {
     inquirer.prompt(questionsAll).then(engAns => {
         engineer = new Engineer(engAns.name, engAns.id, engAns.email)
@@ -113,6 +124,7 @@ function addEngineer() {
     })
 }
 
+//enter intern
 function addIntern() {
     inquirer.prompt(questionsAll).then(intAns => {
         intern = new Intern(intAns.name, intAns.id, intAns.email)
@@ -124,16 +136,9 @@ function addIntern() {
     })
 }
 
+//generate html file
 function generatePage() {
     fs.writeFile("./dist/my-team.html", generateHTML(team), (err) => err ? console.error(err) : console.log(`Profile at ./dist/my-team.html`))
 }
+
 start();
-// GIVEN a command-line application that accepts user input
-// WHEN I am prompted for my team members and their information
-// THEN an HTML file is generated that displays a nicely formatted team roster based on user input
-// WHEN I click on an email address in the HTML
-// THEN my default email program opens and populates the TO field of the email with the address
-// WHEN I click on the GitHub username
-// THEN that GitHub profile opens in a new tab
-// WHEN I decide to finish building my team
-// THEN I exit the application, and the HTML is generated
