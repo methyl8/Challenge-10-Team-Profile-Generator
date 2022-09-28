@@ -14,7 +14,7 @@ Necessary components will be installed with
 ## Usage
 Run the following command from the terminal  
 node index.js  
-Generated README is output as my-team.html in /dist.  Sample file is included in this repo.
+Generated profile is output as my-team.html in /dist.  Sample file is included in this repo.
 
 ## Example
 [Example Video](https://drive.google.com/file/d/1sHhVYA45a_bvNDhS0ex0KEtufQbQH0Ky/view) showing operation and passing class tests.  
